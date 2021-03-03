@@ -1,6 +1,7 @@
 package com.example.nm1
 
 import android.os.Bundle
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.nm1.alarmFrag.AlarmFragment
@@ -30,6 +31,6 @@ class OuterMain : AppCompatActivity() {
         }
     }
     private fun changeFragment(fragment: Fragment) {
-        supportFragmentManager .beginTransaction().replace(R.id.outer_screen, fragment) .commit()
+        supportFragmentManager .beginTransaction().replace(R.id.outerFrame, fragment) .commit()
     }
 }

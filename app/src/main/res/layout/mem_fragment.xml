@@ -15,6 +15,8 @@
             android:id="@+id/memList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="28dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/mem_item">
@@ -24,9 +26,9 @@
             android:id="@+id/memAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
             android:background="@drawable/rec_design"
-            android:layout_below="@id/memList"
-            android:text="+" />
+            android:layout_below="@id/memList"/>
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

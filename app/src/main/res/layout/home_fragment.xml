@@ -3,39 +3,146 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".homeFrag.HomeFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/nestOwner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <GridView
-            android:id="@+id/nestList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/nestOwner"
-            tools:listitem="@layout/nest_item"
-            android:numColumns="2"/>
-
-        <TextView
-            android:id="@+id/tipTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/nestList"
-            android:text="집안일 TIP"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tipList"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/home_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tipTitle"
-            android:scrollbars="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/tip_item">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="56dp"
+            android:elevation="2dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetEnd="0dp"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textStyle="normal"
+                    android:textSize="21sp"
+                    android:textColor="#ff883f"
+                    android:lineSpacingExtra="4sp"
+                    android:text="둥지메이트"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_centerVertical="true"
+                    android:background="@color/nothing"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/nest_plus"/>
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/home_toolbar"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/nestOwner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:textColor="#000000"
+                            android:lineSpacingExtra="5sp"
+                            android:text="님의 둥지"/>
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/home_bird"/>
+                    </LinearLayout>
+
+                    <GridView
+                        android:id="@+id/nestList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/nestOwner"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:numColumns="2"
+                        tools:listitem="@layout/nest_item" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="40dp"
+                        android:layout_below="@+id/nestList"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tipTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="normal"
+                            android:textSize="17sp"
+                            android:textColor="#000000"
+                            android:lineSpacingExtra="4sp"
+                            android:text="집안일 TIP"/>
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="16dp"
+                            android:layout_marginLeft="6dp"
+                            android:src="@drawable/home_tip"/>
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/tipList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/tipTitle"
+                        android:scrollbars="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/tip_item">
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 </FrameLayout>
