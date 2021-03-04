@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".homeFrag.HomeFragment">
+    tools:context=".src.main.home.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

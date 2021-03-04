@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".nvFrag.NVFragment">
+    tools:context=".src.main.home.nest.notice.NVFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/nvList"
