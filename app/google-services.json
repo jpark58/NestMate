@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "466546745055",
+    "project_id": "nestmate-a7e1e",
+    "storage_bucket": "nestmate-a7e1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466546745055:android:7b7f3a1e5bdc3f8232d36a",
+        "android_client_info": {
+          "package_name": "com.example.nm1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466546745055-parru1b81967qbd4surm2k1ct15kcorc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABAvHWynw8eURaVDhnUI1aHkZu2jUoY3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466546745055-parru1b81967qbd4surm2k1ct15kcorc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
