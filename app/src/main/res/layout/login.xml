@@ -94,7 +94,7 @@
         android:layout_below="@+id/login_insert"
         android:layout_marginTop="29dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/roundrec_design"
+        android:background="@drawable/roundrec_design_active_bg"
         android:text="로그인"
         android:textColor="@color/white"/>
     <LinearLayout

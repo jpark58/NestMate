@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nm1.src.main.home.MainActivity
 import com.example.nm1.R
-import com.example.nm1.src.register.RegisterOne
+import com.example.nm1.src.register.RegisterOneActivity
 import kotlinx.android.synthetic.main.login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         register.setOnClickListener {
-            val intent = Intent(this, RegisterOne::class.java)
+            val intent = Intent(this, RegisterOneActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             finish()
