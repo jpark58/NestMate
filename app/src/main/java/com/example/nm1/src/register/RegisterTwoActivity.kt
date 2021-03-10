@@ -7,6 +7,8 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -49,7 +51,13 @@ class RegisterTwoActivity : BaseActivity<ActivityRegisterTwoBinding>(ActivityReg
             }
         }
 
-        binding.registerImg.setOnClickListener {
+        binding.registerImgDefault.setOnClickListener {
+            var photoIntent = Intent(Intent.ACTION_PICK)
+            photoIntent.type = "image/*"
+            startActivityForResult(photoIntent, 0)
+        }
+
+        binding.registerImgSelected.setOnClickListener {
             var photoIntent = Intent(Intent.ACTION_PICK)
             photoIntent.type = "image/*"
             startActivityForResult(photoIntent, 0)
@@ -61,7 +69,6 @@ class RegisterTwoActivity : BaseActivity<ActivityRegisterTwoBinding>(ActivityReg
         if(requestCode == 0){
             if(resultCode == Activity.RESULT_OK){
                 uriPhoto = data?.data!!
-                binding.registerImg.setImageURI(uriPhoto)
 
                 if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) ==
                         PackageManager.PERMISSION_GRANTED){
@@ -72,11 +79,16 @@ class RegisterTwoActivity : BaseActivity<ActivityRegisterTwoBinding>(ActivityReg
     }
 
     private fun funImageUpload(){
-        var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        var imgFileName = "IMAGE_" + timestamp + "_.jpg"
+        var id = intent.getStringExtra("email")
+        var imgFileName: String = "${id}.jpg"
         var storageRef = storage?.reference.child("images").child(imgFileName)
         storageRef.putFile(uriPhoto).addOnSuccessListener {
-            showCustomToast("Image upload successful")
+            binding.registerImgDefault.visibility = View.GONE
+            binding.registerImgSelected.visibility = View.VISIBLE
+            binding.registerImgSelected.setImageURI(uriPhoto)
+            showCustomToast("프로필 이미지 설정 완료")
+        }.addOnFailureListener {
+            showCustomToast("프로필 이미지 설정 실패")
         }
     }
 }

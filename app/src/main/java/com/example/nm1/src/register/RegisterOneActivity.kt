@@ -17,7 +17,6 @@ class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityReg
     private var isOK = false
     private var isResend = false
     private var checkList = booleanArrayOf(false,false,false,false,false,false)
-
     val timer: CountDownTimer = object : CountDownTimer(300000, 1000) {
         override fun onTick(millisUntilFinished: Long) {
             //update the UI with the new count
@@ -32,7 +31,7 @@ class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityReg
 
         override fun onFinish() {
             binding.registerPhoneAuthTimer.text = "00:00"
-            binding.registerPhoneAuthMsgBtn.text = "재전송"
+            binding.registerPhoneAuthBtn.text = "재전송"
         }
     }
 
@@ -46,6 +45,12 @@ class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityReg
             if(isOK){
                 val intent = Intent(this, RegisterTwoActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+
+                intent.putExtra("name", (binding.registerNameEt.text).toString())
+                intent.putExtra("email",(binding.registerEmailEt.text).toString())
+                intent.putExtra("phone", (binding.registerPhoneEt.text).toString())
+                intent.putExtra("password", (binding.registerPwEt.text).toString())
+
                 startActivity(intent)
                 finish()
             }

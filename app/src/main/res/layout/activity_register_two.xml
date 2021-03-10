@@ -56,7 +56,7 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/register_img"
+            android:id="@+id/register_img_default"
             android:layout_width="108dp"
             android:layout_height="108dp"
             android:layout_gravity="center_horizontal"
@@ -64,6 +64,16 @@
             android:src="@drawable/register_defaut_img"
             android:scaleType="center"
             android:background="@drawable/round_design"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/register_img_selected"
+            android:visibility="gone"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="58dp"
+            android:src="@drawable/chicken_img"
+            />
 
         <EditText
             android:id="@+id/register_nickname"
@@ -76,7 +86,8 @@
             android:fontFamily="@font/notosanskr_regular"
             android:textStyle="normal"
             android:textSize="15sp"
-            android:textColor="@color/gray"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
             android:lineSpacingExtra="3sp"
             android:maxLength="2"
             android:hint="@string/register_two_name"/>
