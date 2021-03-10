@@ -23,4 +23,7 @@
     <string name="register_one_phone_failure">이미 사용중인 번호입니다</string>
     <string name="register_one_email_success">사용 가능한 이메일입니다.</string>
     <string name="register_one_email_failure">이미 사용중인 이메일입니다.</string>
+
+    <!-- RegisterLoginDialog   -->
+    <string name="register_login_btn_text">로그인</string>
 </resources>

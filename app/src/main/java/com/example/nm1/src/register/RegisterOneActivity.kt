@@ -21,6 +21,9 @@ class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityReg
     private var isOK = false
     private var isResend = false
     private var checkList = booleanArrayOf(false,false,false,false,false,false)
+    private var isPhoneValid = false
+    private var isEmailValid = false
+
     val timer: CountDownTimer = object : CountDownTimer(300000, 1000) {
         override fun onTick(millisUntilFinished: Long) {
             //update the UI with the new count
@@ -107,7 +110,8 @@ class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityReg
                 }
             }
 
-            if(flag){
+            if(flag && isPhoneValid && isEmailValid &&
+                    binding.registerPwConfirmEt.text.toString() == binding.registerPwEt.text.toString()){
                 binding.registerOneBtn.setBackgroundResource(R.drawable.roundrec_design_active_bg)
                 isOK = true
             }else{
@@ -119,8 +123,7 @@ class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityReg
     override fun onPostPhoneAuthSuccess(response: BaseResponse) {
         when(response.code){
             200 -> {
-                val dialog = RegisterAuthDialog(response.message.toString(), true)
-                dialog.show(supportFragmentManager, dialog.tag)
+
             }
             else -> {
                 val dialog = RegisterAuthDialog(response.message.toString(), false)
@@ -136,10 +139,12 @@ class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityReg
     override fun onPostCodeAuthSuccess(response: BaseResponse) {
         when(response.code){
             200 -> {
+                isPhoneValid = true
                 val dialog = RegisterAuthDialog(getString(R.string.register_one_phone_success), true)
                 dialog.show(supportFragmentManager, dialog.tag)
             }
             else -> {
+                isPhoneValid = false
                 val dialog = RegisterAuthDialog(response.message.toString(), false)
                 dialog.show(supportFragmentManager, dialog.tag)
             }
@@ -153,10 +158,12 @@ class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityReg
     override fun onPostEmailAuthSuccess(response: BaseResponse) {
         when(response.code){
             200 -> {
+                isEmailValid = true
                 val dialog = RegisterAuthDialog(getString(R.string.register_one_email_success), true)
                 dialog.show(supportFragmentManager, dialog.tag)
             }
             else -> {
+                isEmailValid = false
                 val dialog = RegisterAuthDialog(response.message.toString(), false)
                 dialog.show(supportFragmentManager, dialog.tag)
             }

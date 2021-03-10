@@ -17,6 +17,7 @@ import com.example.nm1.R
 import com.example.nm1.config.BaseActivity
 import com.example.nm1.config.BaseResponse
 import com.example.nm1.databinding.ActivityRegisterTwoBinding
+import com.example.nm1.src.login.LoginActivity
 import com.example.nm1.src.main.home.MainActivity
 import com.example.nm1.util.onMyTextChanged
 import com.google.firebase.ktx.Firebase
@@ -30,11 +31,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-class RegisterTwoActivity : BaseActivity<ActivityRegisterTwoBinding>(ActivityRegisterTwoBinding::inflate), RegisterTwoView {
+class RegisterTwoActivity : BaseActivity<ActivityRegisterTwoBinding>(ActivityRegisterTwoBinding::inflate), RegisterTwoView, RegisterLoginInterface {
     private lateinit var uriPhoto: Uri
     private var map = HashMap<String, RequestBody>()
     private lateinit var uploadFile: MultipartBody.Part
     private var nicknameet = ""
+    private var goToLogin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,10 +114,8 @@ class RegisterTwoActivity : BaseActivity<ActivityRegisterTwoBinding>(ActivityReg
     override fun postUserSignUpSuccess(response: BaseResponse) {
         when(response.code){
             200 -> {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                startActivity(intent)
-                finish()
+                val dialog = RegisterLoginDialog(this)
+                dialog.show(supportFragmentManager, dialog.tag)
             }
             else -> {
                 val dialog = RegisterAuthDialog(response.message.toString(), false)
@@ -140,5 +140,22 @@ class RegisterTwoActivity : BaseActivity<ActivityRegisterTwoBinding>(ActivityReg
             cursor.close()
         }
         return path
+    }
+
+    override fun onLoginClicked() {
+        goToLogin = true
+
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+
+    }
+
+    override fun onLoginCanceled() {
+        goToLogin = false
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        startActivity(intent)
+        finish()
     }
 }

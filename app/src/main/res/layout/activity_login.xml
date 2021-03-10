@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/login_img"
-        android:layout_width="94dp"
-        android:layout_height="104dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="101dp"
         android:src="@drawable/chicken_img"/>
@@ -16,10 +16,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="16dp"
         android:layout_below="@id/login_img"
         android:textStyle="normal"
         android:textSize="24sp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/jalnan"
         android:textColor="#ff883f"
         android:lineSpacingExtra="5sp"
         android:text="둥지메이트" />
@@ -37,22 +39,36 @@
         <LinearLayout
             android:layout_width="321dp"
             android:layout_height="51dp"
+            android:paddingLeft="20dp"
+            android:weightSum="10"
             android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/email_img"/>
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="13dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/login_email"/>
 
             <EditText
                 android:id="@+id/login_email"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="9"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="20dp"
                 android:background="@color/nothing"
+                android:fontFamily="@font/notosanskr_regular"
+                android:textStyle="normal"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorTextHint"
+                android:lineSpacingExtra="3sp"
                 android:hint="이메일을 입력해주세요."
                 android:breakStrategy="balanced"/>
         </LinearLayout>
@@ -66,23 +82,39 @@
         <LinearLayout
             android:layout_width="321dp"
             android:layout_height="51dp"
+            android:paddingLeft="20dp"
+            android:weightSum="10"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/login_pw"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/lock_img"/>
+            </LinearLayout>
+
+
 
             <EditText
                 android:id="@+id/login_pw"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="9"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="20dp"
                 android:layout_below="@+id/login_email"
                 android:background="@color/nothing"
+                android:fontFamily="@font/notosanskr_regular"
+                android:textStyle="normal"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorTextHint"
+                android:lineSpacingExtra="3sp"
                 android:hint="비밀번호를 입력해주세요."/>
         </LinearLayout>
     </LinearLayout>
@@ -92,30 +124,43 @@
         android:layout_width="321dp"
         android:layout_height="52dp"
         android:layout_below="@+id/login_insert"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="32dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/roundrec_design_active_bg"
+        android:background="@drawable/roundrec_design_inactive_bg"
         android:text="로그인"
+        android:fontFamily="@font/notosanskr_medium"
+        android:textStyle="normal"
+        android:textSize="17sp"
+        android:lineSpacingExtra="1sp"
         android:textColor="@color/white"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
+        android:layout_marginBottom="16sp"
         android:layout_alignParentBottom="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:textColor="@color/black"
             android:text="아직 회원이 아니신가요?"/>
         <Button
-            android:id="@+id/register"
+            android:id="@+id/login_register"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
             android:background="@color/nothing"
             android:text="회원가입"
+            android:fontFamily="@font/notosanskr_medium"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:lineSpacingExtra="3sp"
             android:textColor="@color/orange"/>
     </LinearLayout>
 

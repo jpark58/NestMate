@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.nm1.R
 import com.example.nm1.config.ApplicationClass
+import com.example.nm1.src.login.LoginActivity
 import com.example.nm1.src.main.alarm.AlarmFragment
 import com.example.nm1.src.main.mypage.MyFragment
 import com.example.nm1.src.register.RegisterOneActivity
@@ -24,7 +25,10 @@ class MainActivity : AppCompatActivity() {
             setOnNavigationItemSelectedListener {
                 when(it.itemId) {
                     R.id.home -> { changeFragment(HomeFragment()) }
-                    R.id.alarm -> { changeFragment(AlarmFragment()) }
+                    R.id.alarm -> {
+                        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                    }
                     R.id.my -> {
                         if(ApplicationClass.sSharedPreferences.getString("JWT", "na") == "na"){
                             val intent = Intent(this@MainActivity, RegisterOneActivity::class.java)
