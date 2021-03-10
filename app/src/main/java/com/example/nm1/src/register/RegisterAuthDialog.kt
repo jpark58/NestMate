@@ -7,13 +7,16 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
+import com.example.nm1.R
 import com.example.nm1.databinding.DialogRegisterAuthBinding
 
-class RegisterAuthDialog(message: String): DialogFragment() {
+class RegisterAuthDialog(message: String, isSuccess: Boolean): DialogFragment() {
     private var binding: DialogRegisterAuthBinding? = null
     var windowManager: WindowManager? = null
     var display: Display? = null
     var size: Point? = null
+    var message = message
+    var isSuccess = isSuccess
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +49,15 @@ class RegisterAuthDialog(message: String): DialogFragment() {
         binding!!.registerDialogCancelBtn.setOnClickListener {
             dismiss()
         }
+
+        if(isSuccess){
+            binding!!.registerDialogImg.setImageResource(R.drawable.dialog_ok)
+            binding!!.registerDialogResponseTv.text = message
+        }else{
+            binding!!.registerDialogImg.setImageResource(R.drawable.dialog_fail)
+            binding!!.registerDialogResponseTv.text = message
+        }
+
     }
 
     override fun onResume() {
@@ -54,5 +66,6 @@ class RegisterAuthDialog(message: String): DialogFragment() {
         val deviceWidth = size!!.x
         params?.width = (deviceWidth*0.9).toInt()
         dialog?.window?.attributes = params as WindowManager.LayoutParams
+
     }
 }

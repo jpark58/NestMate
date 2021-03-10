@@ -9,11 +9,15 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nm1.R
 import com.example.nm1.config.BaseActivity
+import com.example.nm1.config.BaseResponse
 import com.example.nm1.databinding.ActivityRegisterOneBinding
+import com.example.nm1.src.register.model.PostCodeAuthRequest
+import com.example.nm1.src.register.model.PostEmailAuthRequest
+import com.example.nm1.src.register.model.PostPhoneAuthRequest
 import com.example.nm1.util.onMyTextChanged
 import kotlin.math.roundToInt
 
-class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityRegisterOneBinding::inflate) {
+class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityRegisterOneBinding::inflate), RegisterOneView {
     private var isOK = false
     private var isResend = false
     private var checkList = booleanArrayOf(false,false,false,false,false,false)
@@ -59,16 +63,18 @@ class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityReg
         binding.registerPhoneAuthBtn.setOnClickListener {
             binding.registerPhoneAuthLayout.visibility = View.VISIBLE
             timer.start()
+            val request = PostPhoneAuthRequest(binding.registerPhoneEt.text.toString())
+            RegisterOneService(this).tryPostPhoneAuth(request)
         }
 
         binding.registerPhoneAuthMsgBtn.setOnClickListener {
-            // RETRFOIT!!!!
+            val request = PostCodeAuthRequest(binding.registerPhoneEt.text.toString(), binding.registerPhoneAuthMsgEt.text.toString())
+            RegisterOneService(this).tryPostCodeAuth(request)
         }
 
         binding.registerEmailBtn.setOnClickListener {
-            // RETROFIT!!!
-            val dialog = RegisterAuthDialog("email")
-            dialog.show(supportFragmentManager, dialog.tag)
+            val request = PostEmailAuthRequest(binding.registerEmailEt.text.toString())
+            RegisterOneService(this).tryPostEmailAuth(request)
         }
 
         binding.registerNameEt.onMyTextChanged {
@@ -108,5 +114,56 @@ class RegisterOneActivity : BaseActivity<ActivityRegisterOneBinding>(ActivityReg
                 binding.registerOneBtn.setBackgroundResource(R.drawable.roundrec_design_inactive_bg)
             }
         }
+    }
+
+    override fun onPostPhoneAuthSuccess(response: BaseResponse) {
+        when(response.code){
+            200 -> {
+                val dialog = RegisterAuthDialog(response.message.toString(), true)
+                dialog.show(supportFragmentManager, dialog.tag)
+            }
+            else -> {
+                val dialog = RegisterAuthDialog(response.message.toString(), false)
+                dialog.show(supportFragmentManager, dialog.tag)
+            }
+        }
+    }
+
+    override fun onPostPhoneAuthFailure(message: String) {
+        showCustomToast(message)
+    }
+
+    override fun onPostCodeAuthSuccess(response: BaseResponse) {
+        when(response.code){
+            200 -> {
+                val dialog = RegisterAuthDialog(getString(R.string.register_one_phone_success), true)
+                dialog.show(supportFragmentManager, dialog.tag)
+            }
+            else -> {
+                val dialog = RegisterAuthDialog(response.message.toString(), false)
+                dialog.show(supportFragmentManager, dialog.tag)
+            }
+        }
+    }
+
+    override fun onPostCodeAuthFailure(message: String) {
+        showCustomToast(message)
+    }
+
+    override fun onPostEmailAuthSuccess(response: BaseResponse) {
+        when(response.code){
+            200 -> {
+                val dialog = RegisterAuthDialog(getString(R.string.register_one_email_success), true)
+                dialog.show(supportFragmentManager, dialog.tag)
+            }
+            else -> {
+                val dialog = RegisterAuthDialog(response.message.toString(), false)
+                dialog.show(supportFragmentManager, dialog.tag)
+            }
+        }
+    }
+
+    override fun onPostEmailAuthFailure(message: String) {
+        showCustomToast(message)
     }
 }
